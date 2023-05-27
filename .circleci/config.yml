@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   newman: postman/newman@1.0.0
-  slack: circleci/slack@4.1
+  slack: circleci/slack@4.12.5
 jobs:
   build:
     executor: newman/postman-newman-docker
@@ -10,9 +10,6 @@ jobs:
       - newman/newman-run:
           collection: ./ulab2.json
           environment: ./ulab.env.json
-      - run:
-          name: Install CURL
-          command: sudo apt-get update && sudo apt-get install -y curl
       - slack/notify:
           event: fail
           custom: |
