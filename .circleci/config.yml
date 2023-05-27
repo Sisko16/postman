@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   newman: postman/newman@1.0.0
-  slack: circleci/slack@4.12.5
+  slack: circleci/slack@4.1
 jobs:
   build:
     executor: newman/postman-newman-docker
@@ -30,7 +30,7 @@ jobs:
                 }
               ]
             }
-          mentions: "#zpro_api_testing"
+          mentions: "@zpro_api_testing"
       - slack/notify:
           event: pass
           custom: |
@@ -48,7 +48,7 @@ jobs:
                 }
               ]
             }
-          mentions: "#zpro_api_testing"
+          mentions: "@zpro_api_testing"
 workflows:
   send-notification:
     jobs:
