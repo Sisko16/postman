@@ -10,3 +10,44 @@ jobs:
       - newman/newman-run:
           collection: ./ulab2.json
           environment: ./ulab.env.json
+      - slack/notify:
+          event: fail
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*API tests failed*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          mentions: "#zpro_api_testing"
+      - slack/notify:
+          event: pass
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*API tests succeeded*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          mentions: "#zpro_api_testing"
+workflows:
+  send-notification:
+    jobs:
+      - build:
+          context: SLACK_ACCESS_TOKEN
