@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   newman: postman/newman@1.0.0
+  slack: circleci/slack@4.0
 jobs:
   build:
     executor: newman/postman-newman-docker
@@ -9,3 +10,16 @@ jobs:
       - newman/newman-run:
           collection: ./ulab2.json
           environment: ./ulab.env.json
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+          mentions: "@zpro_api_testing"
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+          mentions: "@zpro_api_testing"
+workflows:
+  send-notification:
+    jobs:
+      - notify:
+          context: SLACK_ACCESS_TOKEN
