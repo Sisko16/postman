@@ -30,7 +30,7 @@ jobs:
                 }
               ]
             }
-          mentions: "@zpro_api_testing"
+          mentions: SLACK_DEFAULT_CHANNEL
       - slack/notify:
           event: pass
           custom: |
@@ -48,7 +48,7 @@ jobs:
                 }
               ]
             }
-          mentions: "@zpro_api_testing"
+          mentions: SLACK_DEFAULT_CHANNEL
 workflows:
   send-notification:
     jobs:
