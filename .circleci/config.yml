@@ -46,8 +46,3 @@ jobs:
               ]
             }
           mentions: "@zpro_api_testing"
-workflows:
-  send-notification:
-    jobs:
-      - build:
-          context: SLACK_ACCESS_TOKEN
