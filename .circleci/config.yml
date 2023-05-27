@@ -10,6 +10,9 @@ jobs:
       - newman/newman-run:
           collection: ./ulab2.json
           environment: ./ulab.env.json
+      - run:
+          name: Install CURL
+          command: sudo apt-get update && sudo apt-get install -y curl
       - slack/notify:
           event: fail
           custom: |
