@@ -27,7 +27,7 @@ jobs:
                 }
               ]
             }
-          mentions: "#zpro_api_testing"
+          mentions: "@zpro_api_testing"
       - slack/notify:
           event: pass
           custom: |
@@ -45,7 +45,7 @@ jobs:
                 }
               ]
             }
-          mentions: "#zpro_api_testing"
+          mentions: "@zpro_api_testing"
 workflows:
   send-notification:
     jobs:
