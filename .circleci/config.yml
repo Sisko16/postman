@@ -12,12 +12,40 @@ jobs:
           environment: ./ulab.env.json
       - slack/notify:
           event: fail
-          template: basic_fail_1
-          mentions: "@zpro_api_testing"
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*API tests failed*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          mentions: "#zpro_api_testing"
       - slack/notify:
           event: pass
-          template: success_tagged_deploy_1
-          mentions: "@zpro_api_testing"
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*API tests succeeded*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          mentions: "#zpro_api_testing"
 workflows:
   send-notification:
     jobs:
